@@ -10,6 +10,7 @@ router.get("/", function (req, res, next) {
 
 router.get("/get-candidates", controller.getCandidates);
 router.get("/get-election-name", controller.getElectionName);
+router.get("/get-results", controller.getResults);
 router.post("/vote", controller.vote);
 
 

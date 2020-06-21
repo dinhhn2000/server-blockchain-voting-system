@@ -44,6 +44,27 @@ exports.getElectionName = (req, res, next) => {
   }
 };
 
+exports.getResults = async (req, res, next) => {
+  try {
+    const url = SCRUTINEER_ENDPOINT + "/all-votes";
+    let results = await axios({ method: "get", url });
+
+    if (results.data.result === true)
+      return res.status(200).json({
+        result: true,
+        message: "Succeed",
+        votes: results.data.votes,
+      });
+    else throw results.data.error;
+  } catch (error) {
+    return res.status(400).json({
+      result: false,
+      message: "Failed",
+      error,
+    });
+  }
+};
+
 exports.vote = async (req, res, next) => {
   const { info, voteTo } = req.body;
   try {
