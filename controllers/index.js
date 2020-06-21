@@ -18,7 +18,7 @@ const candidates = [
 
 const election = "ĐẠI BIỂU QUỐC HỘI KHOÁ XIV";
 
-const SCRUTINEER_ENDPOINT = "http://127.0.0.1:3000";
+const SCRUTINEER_ENDPOINT = "http://127.0.0.1:3001";
 
 exports.getCandidates = (req, res, next) => {
   try {
@@ -67,6 +67,7 @@ exports.getResults = async (req, res, next) => {
 
 exports.vote = async (req, res, next) => {
   const { info, voteTo } = req.body;
+  
   try {
     const url = SCRUTINEER_ENDPOINT + "/add-vote";
     await axios({
